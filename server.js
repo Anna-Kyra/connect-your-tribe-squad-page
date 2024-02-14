@@ -9,7 +9,12 @@ const apiUrl = 'https://fdnd.directus.app/items'
 
 // Haal alle squads uit de WHOIS API op
 const squadData = await fetchJson(apiUrl + '/squad')
+// console.log(squadData.data.name);
 
+// let jsonCustom = squadData.data.custom
+// let custom = JSON.parse(jsonCustom)
+// squadData.data.custom = custom
+// console.log(squadData.data.custom)
 // Maak een nieuwe express app aan
 const app = express()
 
@@ -25,7 +30,7 @@ app.use(express.static('public'))
 // Maak een GET route voor de index
 app.get('/', function (request, response) {
   // Haal alle personen uit de WHOIS API op
-  fetchJson(apiUrl + '/person').then((apiData) => {
+  fetchJson(apiUrl + '/person/?filter={"squad_id":"4"}&sort=name').then((apiData) => {
     // apiData bevat gegevens van alle personen uit alle squads
     // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
 
